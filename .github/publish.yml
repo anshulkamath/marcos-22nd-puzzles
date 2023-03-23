@@ -1,0 +1,23 @@
+name: publish
+
+on: [push]
+
+jobs:
+  publish-marcos-22nd-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GH_TOKEN }}
+
+    - name: Build the marcos-22nd Docker image
+      run: |
+        docker build . --tag ghcr.io/anshulkamath/marcos-22nd:latest
+        docker run ghcr.io/anshulkamath/marcos-22nd:latest
+        docker push ghcr.io/anshulkamath/marcos-22nd:latest
