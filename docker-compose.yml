@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  marcos-22nd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # it's okay to push this PAT because it only grants read access to private repo
+        GITHUB_PAT: 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
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_PTRACE

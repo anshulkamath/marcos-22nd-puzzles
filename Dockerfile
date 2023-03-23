@@ -7,10 +7,10 @@ RUN apt-get update && \
 RUN mkdir /usr/local/repos
 WORKDIR /usr/local/repos
 
+ARG GITHUB_PAT
 RUN git config --global user.name "" && \
-    git config --global user.email ""
-
-ENV GITHUB_PAT "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"
+    git config --global user.email "" && \
+    git config --global url."https://docker:${GITHUB_PAT}@github.com".insteadOf "https://github.com"
 
 ENV REPO "https://docker:${GITHUB_PAT}@github.com/anshulkamath/marcos-22nd-puzzles.git"
 
@@ -20,6 +20,6 @@ RUN mkdir /workspaces
 WORKDIR /workspaces
 
 COPY startup.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/startup.sh
+RUN /usr/local/bin/startup.sh
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/usr/local/bin/startup.sh" ]
