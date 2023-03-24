@@ -4,21 +4,20 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "puzzle-1.h"
+#include "puzzle-2.h"
+
 #define GUESS_SIZE 20
 
 const char *keyword_1 = "bitches.";
 const char *keyword_2 = "smash";
 
-typedef struct mystery_struct_s {
-  struct mystery_struct_s *unknown;
-  char *message;
-} mystery_struct_t;
-
-mystery_struct_t l5 = { NULL, "keyword: smash" };
-mystery_struct_t l4 = { &l5, "you've proven that you know what you're doing. the key is the next message" };
-mystery_struct_t l3 = { &l4, "okay... so you might know what's happening right now" };
-mystery_struct_t l2 = { &l3, "" };
-mystery_struct_t l1 = { &l2, "so you found this message, huh? you must think you're so cool." };
+mystery_struct_t l6 = { NULL, "keyword: smash" };
+mystery_struct_t l5 = { &l6, "you've proven that you know what you're doing. the key is the next message" };
+mystery_struct_t l4 = { &l5, "okay... so you might know what's happening right now" };
+mystery_struct_t l3 = { &l4, "" };
+mystery_struct_t l2 = { &l3, "so you found this message, huh? you must think you're so cool." };
+mystery_struct_t l1 = { &l2, "fine. I'll give you a hint here." };
 
 void interrupt_handler(int signo) {
   printf("\nHaven't I taught you anything? Did you really think I would let you kill this process?\n");
@@ -59,14 +58,6 @@ int get_guess(char *guess, int is_piped) {
     printf("\n");
   }
 
-  return 0;
-}
-
-int mystery_function_1(const char *message) {
-  return 0;
-}
-
-int mystery_function_2(mystery_struct_t *m) {
   return 0;
 }
 
