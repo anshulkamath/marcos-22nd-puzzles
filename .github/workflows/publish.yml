@@ -2,7 +2,7 @@ name: publish
 
 on:
   push:
-    branches: ['release']
+    braches: ['release']
 
 jobs:
   publish-marcos-22nd-image:
@@ -20,6 +20,6 @@ jobs:
 
     - name: Build the marcos-22nd Docker image
       run: |
-        docker build . --tag ghcr.io/anshulkamath/marcos-22nd:latest
+        docker build . --build-arg GITHUB_PAT=${{ secrets.DOCKERFILE_TOKEN }} --tag ghcr.io/anshulkamath/marcos-22nd:latest
         docker run ghcr.io/anshulkamath/marcos-22nd:latest
         docker push ghcr.io/anshulkamath/marcos-22nd:latest
