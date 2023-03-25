@@ -1,0 +1,6 @@
+#ifndef KEYPHRASE_H
+#define KEYPHRASE_H
+
+void DEFINITELY_NOT_KEYPHRASE();
+
+#endif
