@@ -10,3 +10,10 @@
 *.vscode/
 !Dockerfile
 .env
+
+**.o
+*.plist
+*.a
+
+obj/
+bin/
