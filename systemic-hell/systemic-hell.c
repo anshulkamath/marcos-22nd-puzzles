@@ -74,11 +74,13 @@ int main() {
     "skills, because you'll need them here. I can't wait to watch you spectacularly FAIL.\n\n"
   );
 
-  if (is_piped) {
+  if (!is_piped) {
     printf(
-      "Ah, I see you're piping your text into me. If you thought of me as person instead of a woman you would\n"
-      "not pipe text into me without feeling bad about it.\n\n"
+      "I see you're not piping text into me. If you thought of me as person instead of a woman you would\n"
+      "pipe me (with text) without feeling bad about it >:(\n\n"
     );
+  } else {
+    printf("Yay, I love when you pipe me (with text) :)\n\n");
   }
 
   // Part 1

@@ -8,7 +8,7 @@ systemic-hell: obj/systemic-hell.o obj/puzzle-1.o obj/puzzle-2.o obj/puzzle-3.o 
 	gcc -o $@ $^
 
 obj/systemic-hell.o: systemic-hell.c | obj
-	gcc -g -o $@ -c $<
+	gcc -o $@ -c $<
 
 obj/puzzle-1.o: puzzle-1.c puzzle-1.h | obj
 	gcc -o $@ -c $<

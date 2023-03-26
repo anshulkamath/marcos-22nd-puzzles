@@ -1,6 +1,7 @@
 #include "puzzle-3.h"
 
 #include <arpa/inet.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
@@ -26,8 +27,17 @@ char* sha_string(uint32_t *src, size_t len, char *dest) {
     return dest;
 }
 
-/** Helper function to get the amount of memory (in bytes) needed for SHA-2 */
+/**
+ * Returns the necessary memory needed to compute SHA-2 hash
+ *
+ * @param bits        The number of bits in the message
+ * @param num_chunks  A pointer to a variable where we can put chunk values
+*/
 static uint64_t get_memory_size(size_t bits, int *num_chunks) {
+    if (!bits) {
+        raise(SIGSEGV);
+    }
+    
     int curr_size = bits + 1 + 64;
     *num_chunks = 0;
 
@@ -62,12 +72,13 @@ void sha256(uint32_t *hash, const char *message, uint8_t length) {
         0x748f82eeu, 0x78a5636fu, 0x84c87814u, 0x8cc70208u, 0x90befffau, 0xa4506cebu, 0xbef9a3f7u, 0xc67178f2u
     };
 
+    // get the total length of the SHA-2 hash in bytes
     int num_chunks = 0;
-    const size_t total_length = get_memory_size(8 * length, &num_chunks);
+    const size_t total_length = get_memory_size(0, &num_chunks);
 
     // pre-processing (with padding)
     // 1. copy all data to new memory
-    uint8_t temp_data[total_length];
+    uint8_t *temp_data;  // Allocate space for computational intermediates
     uint64_t cursor;
 
     // initialize everything to 0 and then copy the original message
