@@ -7,10 +7,10 @@ const question_t questions[] = {
   { "Oh no, I'm perpetuating white supremacist capitalism with my quotient rule!", DAGAN },
   { "I don't think your family loves you.", NOAH },
   { "Modernize yourselves!", KELLER },
-  { "Foundation that was immediately defunded for defrauding investors after sophomore year.", MIARF },
+  { "(Not a quote) Name the foundation that was immediately defunded for defrauding investors after sophomore year.", MIARF },
   { "Presumably everyone here has life goals.", KELLER },
-  { "Rafael: \"How do you make your tortillas so big?\"\n______:\nRafael:\n______: \"Yeast.\"", NOAH },
-  { "GRAPH EDGE, said in Chinese for an entire year, assumed to mean \"ice in my veins.\"", RAJ },
+  { BLU"Rafael: \"How do you make your tortillas so big?\"\n"GRN"______:\n"BLU"Rafael:\n"GRN"______: \"Yeast.\""RESET, NOAH },
+  { "\"GRAPH EDGE\", said in Chinese for an entire year, assumed to mean \"ice in my veins.\"", RAJ },
   { "The grutor really had the audacity to give me a 0 when the syllabus says you get one point for attempting the problem.", KEVIN },
   { "It looks like it's going to be much bigger than we would have hoped a month ago.", BUSH },
   { "It's amazing how fast the coronavirus has spread.", BUSH },
@@ -63,15 +63,20 @@ const question_t questions[] = {
     "Well… the same side of the screen, just the other side of the… uh… educational dynamic",
     ABEL
   },
+  { "Uncorrelated data is... disconcerting to Homo sapiens.", DODDS },
+  { "I was in the middle of deep throating a costco ice cream and I almost died.", ANSHUL },
+  { "Being from Pittsburgh, the Pacific Ocean felt, and still feels, fictional.", DODDS },
   { "This is awkward. (auto-captioned)", ANSHUL },
   { "If I were Devon, I wouldn't come back to school", MICHELLE },
   { "Okay so remember how I said I was going to work on it?\nI am now at a taco shop.\nI don't know how this happens to me", EVAN },
-  { 
+  {
     "You know, sometimes you live in a dorm and you meet people, and spend enough time with "
     "said people such that you feel that they are, well, somehow important to you. (on friendship)", BEN_MOUL
   },
-  { "Your taste in music is dogshit", ANSHUL"|"PACO },
+  { "(Not a quote) Your taste in music is dogshit", ANSHUL"|"PACO },
+  { "It doesn't have a very good solution because it's not really a problem", GEORGIA },
   { "If you receive a raw pickle over the network, don't trust it!", PYTHON },
+  { "She probably thinks she's safe because she has a good number", KAYA },
   { "Q: \"Will we be able to have 1C parties?\"\n_________: \"I'm down\"", DEAN_EVETTH },
 
   { "Are- are you Henry?", ANSHUL },
@@ -119,6 +124,12 @@ const question_t questions[] = {
 };
 
 void win_message(int score) {
-  printf("Congratulations on finishing with a score of %d!\nNow open this executable in GDB and look at the source code for main().\n", score);
+  printf(
+    "Congratulations on finishing with a score of %d!\n"
+    "Now, I might have lied to you about the technical part of this puzzle...\n"
+    "You should open this executable in GDB and look at the source code for main().\n",
+    score
+  );
+
   DEFINITELY_NOT_KEYPHRASE();
 }

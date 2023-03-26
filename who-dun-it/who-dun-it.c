@@ -11,6 +11,7 @@
 
 int prev_streak = 0;
 int streak = 1;
+int score = 0;
 
 void read_guess(char *src) {
   char curr;
@@ -31,7 +32,7 @@ int get_guess(char *guess) {
   int is_piped = !isatty(fileno(stdin));
 
   if (!is_piped) {
-    printf("Please enter your guess: ");
+    printf("%sPlease enter your guess%s: ", YEL, RESET);
   }
 
   read_guess(guess);
@@ -54,8 +55,15 @@ void print_message(const char *message) {
   } while (message[i++]);
 }
 
+void print_question(const char *message) {
+  printf(GRN);
+  print_message(message);
+  printf(RESET);
+}
+
 void print_incorrect_guess(const char *guess) {
-  printf("Are you serious? Why would `%s` be the answer?\nResetting your streak.\n", guess);
+  printf("%sAre you serious? Why would `%s` be the answer?\nResetting your score.%s\n", RED, guess, RESET);
+  score = 0;
 }
 
 int validate_guess(const char *guess, const char *sol_pattern) {
@@ -82,13 +90,13 @@ int validate_guess(const char *guess, const char *sol_pattern) {
 int ask_question(const char *message, const char *sol_pattern) {
   char guess[GUESS_SIZE] = { 0 };
 
-  print_message(message);
+  print_question(message);
   printf("\n");
 
   get_guess(guess);
 
   if (IS_PIPED) {
-    printf("Please enter your guess: %s\n", guess);
+    printf("%sPlease enter your guess%s: %s\n", YEL, RESET, guess);
   }
 
   int valid_guess = validate_guess(guess, sol_pattern);
@@ -122,7 +130,6 @@ int main() {
     printf("\n");
   }
 
-  int score = 0;
   for (int i = 0; questions[i].question; current = questions[++i]) {
     if (!current.solution) {
       print_message(current.question);
@@ -130,13 +137,15 @@ int main() {
     }
 
     score += ask_question(current.question, current.solution);
-    printf("Your score is: %d\n\n", score);
+    printf(MAG"Your score is: %d\n\n"RESET, score);
 
     if (streak > 40) {
       print_message(
+        RED
         "Woah there, slow your roll. "
         "You're going way too fast... this is a marathon not a sprint. "
         "Resetting your score and streak."
+        RESET
         "\n\n"
       );
 
@@ -146,7 +155,7 @@ int main() {
     }
 
     if (score > 500) {
-      print_message("\nYour score is way too high - let's fix that. Resetting your score and streak.");
+      print_message(RED"\nYour score is way too high - let's fix that. Resetting your score and streak."RESET);
       score = 0;
       streak = 1;
       prev_streak = 0;
