@@ -1,14 +1,25 @@
 all: systemic-hell
 
-systemic-hell: systemic-hell.c puzzle-1.o puzzle-2.o
+# Directory targets
+obj:
+	@mkdir obj
+
+systemic-hell: obj/systemic-hell.o obj/puzzle-1.o obj/puzzle-2.o obj/puzzle-3.o | obj
 	gcc -o $@ $^
 
-puzzle-1.o: puzzle-1.c puzzle-1.h
+obj/systemic-hell.o: systemic-hell.c | obj
+	gcc -g -o $@ -c $<
+
+obj/puzzle-1.o: puzzle-1.c puzzle-1.h | obj
 	gcc -o $@ -c $<
 
 # give minimal debug symbols
-puzzle-2.o: puzzle-2.c puzzle-2.h
+obj/puzzle-2.o: puzzle-2.c puzzle-2.h | obj
 	gcc -g2 -o $@ -c $<
+
+obj/puzzle-3.o: puzzle-3.c puzzle-3.h | obj
+	gcc -g -o $@ -c $<
 
 clean:
 	rm -rf *.o *.dYSM systemic-hell
+	@rm -rf obj

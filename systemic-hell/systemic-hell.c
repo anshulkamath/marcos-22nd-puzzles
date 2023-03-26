@@ -1,6 +1,7 @@
-#include <signal.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 #include <string.h>
 #include <unistd.h>
 
@@ -10,6 +11,7 @@
 
 #define GUESS_SIZE 20
 
+char guess[GUESS_SIZE + 1] = { 0 };
 const char *keyword_1 = "bitches.";
 const char *keyword_2 = "smash";
 
@@ -82,7 +84,7 @@ int main() {
   // Part 1
   mystery_function_1(keyword_1);
 
-  char *guess = calloc(1, GUESS_SIZE + 1);
+  memset(guess, 0, GUESS_SIZE + 1);
   get_guess(guess, is_piped);
 
   if (strcmp(guess, keyword_1)) {
@@ -96,6 +98,7 @@ int main() {
     "fare on the next one. Ta-ta.\n\n"
   );
   
+  memset(guess, 0, GUESS_SIZE + 1);
   mystery_function_2(&l1);
 
   get_guess(guess, is_piped);
@@ -112,9 +115,24 @@ int main() {
   );
 
   const char *KEYPRHASE = "pogo.";
-  uint8_t hash[32] = { 0 };
-  sha256(hash, KEYPRHASE, 6);
-  
+
+  uint32_t hash[8] = { 0 };
+  char result[65] = { 0 };
+  const char *expected = "95aefaae1076c6438215c1d848f020283eef48a6f11237587bef4970dfdfa5b3";
+
+  sha256(hash, KEYPRHASE, 5);
+
+  if (strcmp(expected, sha_string(hash, 8, result))) {
+    fprintf(stderr, "The wrong SHA-2 hash was given back. Please text Anshul to see what is going on. xo\n");
+    fprintf(stderr, "Received hash: %s\n", result);
+    exit(1);
+  }
+
+  printf(
+    "Wow... you've actually completed `Systemic Hell`. I didn't actually think you'd be able to this.\n"
+    "But I'll be a good sport and oblige... here is your final keyphrase:\n%s\n",
+    KEYPRHASE
+  );
 
   return 0;
 }
