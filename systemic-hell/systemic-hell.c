@@ -6,6 +6,7 @@
 
 #include "puzzle-1.h"
 #include "puzzle-2.h"
+#include "puzzle-3.h"
 
 #define GUESS_SIZE 20
 
@@ -106,9 +107,14 @@ int main() {
   printf(
     "*starts sweating*\n"
     "That was also supposed to be an easy puzzle... don't get falsely confident now. I've got plenty of tough problems\n"
-    "here for you. Just you wait... give me a second. I'm going to pull out something incredibly diabolical now... ah.\n"
-    "Yes! Here it is! I think I'll make you debug a segfault. Haha! You're fucked! Good luck, sucker.\n\n"
+    "here for you. Just you wait... give me a second. I'm going to pull out something incredibly diabolical now... ah!\n"
+    "Yes! Here it is! I think I'll make you debug a few segfaults. Haha! You're fucked! Good luck, sucker.\n\n"
   );
+
+  const char *KEYPRHASE = "pogo.";
+  uint8_t hash[32] = { 0 };
+  sha256(hash, KEYPRHASE, 6);
+  
 
   return 0;
 }
