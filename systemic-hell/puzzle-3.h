@@ -7,6 +7,9 @@
 /** Constant defining the number of bits for a SHA-2 hash */
 #define SHA256_BITS 256
 
+
+void mystery_function_3(uint32_t *hash, const char *message, uint8_t length);
+
 /**
  * Helper function to print hash out
  * 

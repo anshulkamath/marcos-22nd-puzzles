@@ -19,6 +19,10 @@
 #define BYTES_PER_CHUNK (512/8)
 #define NUM_32_PER_CHUNK (512 / sizeof(uint32_t))
 
+void mystery_function_3(uint32_t *hash, const char *message, uint8_t length) {
+    sha256(hash, message, length);
+}
+
 char* sha_string(uint32_t *src, size_t len, char *dest) {
     for (size_t i = 0; i < len; i++) {
         sprintf(&dest[i * 8], "%08x", src[i]);
@@ -52,6 +56,7 @@ static uint32_t right_rotate(uint32_t num, uint32_t n) {
 }
 
 void sha256(uint32_t *hash, const char *message, uint8_t length) {
+    /* SHA-2 Implementation from: */
     // initialize hash values
     // (first 32 bits of fractional part of the square root of the first 8 primes)
     uint32_t hashes[] = {
@@ -74,11 +79,11 @@ void sha256(uint32_t *hash, const char *message, uint8_t length) {
 
     // get the total length of the SHA-2 hash in bytes
     int num_chunks = 0;
-    const size_t total_length = get_memory_size(0, &num_chunks);
+    const size_t total_length = get_memory_size(8 * length, &num_chunks);
 
     // pre-processing (with padding)
     // 1. copy all data to new memory
-    uint8_t *temp_data;  // Allocate space for computational intermediates
+    uint8_t temp_data[total_length];  // Allocate space for computational intermediates
     uint64_t cursor;
 
     // initialize everything to 0 and then copy the original message

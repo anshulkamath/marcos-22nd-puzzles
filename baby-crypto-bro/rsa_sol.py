@@ -30,4 +30,5 @@ for x in primes:
 phi = (p - 1) * (q - 1)
 d = pow(e, -1, phi)
 
+print(hex(d))
 print(number_to_string(pow(MESSAGE, d, N)))

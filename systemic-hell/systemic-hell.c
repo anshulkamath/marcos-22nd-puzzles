@@ -122,7 +122,7 @@ int main() {
   char result[65] = { 0 };
   const char *expected = "95aefaae1076c6438215c1d848f020283eef48a6f11237587bef4970dfdfa5b3";
 
-  sha256(hash, KEYPRHASE, 5);
+  mystery_function_3(hash, KEYPRHASE, 5);
 
   if (strcmp(expected, sha_string(hash, 8, result))) {
     fprintf(stderr, "The wrong SHA-2 hash was given back. Please text Anshul to see what is going on. xo\n");
