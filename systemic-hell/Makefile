@@ -1,4 +1,4 @@
-export ARCH := -arm64
+ARCH = arch -arm64
 
 all: systemic-hell
 
@@ -7,28 +7,27 @@ obj:
 	@mkdir obj
 
 systemic-hell: obj/systemic-hell.o obj/puzzle-1.o obj/puzzle-2.o obj/puzzle-3.o | obj
-	arch $$ARCH gcc -o $@ $^
+	$(ARCH) gcc -o $@ $^
 
 obj/systemic-hell.o: systemic-hell.c | obj
-	arch $$ARCH gcc -o $@ -c $<
+	$(ARCH) gcc -o $@ -c $<
 
 obj/puzzle-1.o: puzzle-1.c puzzle-1.h | obj
-	arch $$ARCH gcc -o $@ -c $<
+	$(ARCH) gcc -o $@ -c $<
 
 # give minimal debug symbols
 obj/puzzle-2.o: puzzle-2.c puzzle-2.h | obj
-	arch $$ARCH gcc -g2 -o $@ -c $<
+	$(ARCH) gcc -g2 -o $@ -c $<
 
 obj/puzzle-3.o: puzzle-3.c puzzle-3.h | obj
-	arch $$ARCH gcc -g -o $@ -c $<
+	$(ARCH) gcc -g -o $@ -c $<
 
 clean:
 	rm -rf *.o *.dYSM systemic-hell *.zip
 	@rm -rf obj
 
-zip: export ARCH := -x86_64
+zip: ARCH = arch -x86_64
 zip: systemic-hell
-	@echo "with ARCH=$$ARCH"
 	@mkdir out
 	@cp -r puzzle-3* Makefile-2 obj out
 	@mv out/Makefile-2 out/Makefile

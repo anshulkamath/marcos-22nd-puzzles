@@ -12,8 +12,8 @@
 #define expect(tester, assertion) \
   passes_test &= assertion; \
   expect_helper(tester, assertion, __FILE__, __LINE__, #assertion)
-#define log_tests(tester) log_tests_helper(tester, __FUNCTION__)
-#define sprintf_tests(tester, dest) sprintf_tests_helper(tester, dest, __FUNCTION__)
+#define log_tests(tester) log_tests_helper(tester, __func__)
+#define sprintf_tests(tester, dest) sprintf_tests_helper(tester, dest, __func__)
 
 typedef struct testing_logger testing_logger_t;
 extern const uint32_t MESSAGE_BYTES;

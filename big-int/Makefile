@@ -1,12 +1,11 @@
 CC = gcc
-INCLUDES = -Iinclude -Iconstants
+INCLUDES = -Iinclude
 LIBS = -Llib -ltesting-logger
+ARCH =
 
 # use for testing purposes
-CFLAGS = -g -Wall -Wextra -pedantic -std=c17 -Wno-unused-command-line-argument -std=c17 $(INCLUDES) $(LIBS)
-
-# use for benchmarking purposes
-# CFLAGS = -Ofast -pedantic -std=c17 -std=c17 $(INCLUDES) $(LIBS)
+CFLAGS = -Wall -Wextra -pedantic -Wno-unused-command-line-argument -Wno-strict-prototypes -std=c17
+DBGFLAGS = -g
 
 SRC_FILES = big-uint mod
 OBJ_FILES = $(addprefix obj/,$(SRC_FILES:=.o))
@@ -17,11 +16,9 @@ PRNG = 0
 CYAN =\x1b[36m
 WHITE=\x1b[0m
 
-MAIN =
-MAIN_BINS = $(addprefix bin/, $(MAIN))
 TEST_BINS = $(addprefix bin/test-, $(SRC_FILES))
 
-all: $(MAIN_BINS) $(TEST_BINS)
+all: $(TEST_BINS)
 
 # Directory targets
 obj:
@@ -29,32 +26,33 @@ obj:
 bin:
 	@mkdir bin
 
-# Binary targets
-bin/%: main/%.c $(OBJ_FILES) | bin
-	$(CC) $(CFLAGS) $^ -o $@
+# Binary Targets
+bin/test-big-uint: obj/test-big-uint.o obj/big-uint.o | bin
+	$(ARCH) $(CC) -o $@ $(CFLAGS) -Llib $^ -ltesting-logger
 
-bin/test-%: tests/test-%.c $(OBJ_FILES) | bin
-	$(CC) $(CFLAGS) $^ -o $@
+bin/test-mod: obj/test-mod.o obj/mod.o obj/big-uint.o | bin
+	$(ARCH) $(CC) -o $@ $(CFLAGS) -Llib $^ -ltesting-logger
 
 # Object targets
 obj/%.o: src/%.c | obj
-	$(CC) -c $(CFLAGS) -D PRNG=$(PRNG) $^ -o $@
+	$(ARCH) $(CC) -o $@ -c $(CFLAGS) $(DBGFLAGS) $(INCLUDES) -D PRNG=$(PRNG) $^
 
-obj/%.o: main/%.c | obj
-	$(CC) -c $(CFLAGS) -D PRNG=$(PRNG) $^ -o $@
-
-obj/%.o: tests/%.c | obj
-	$(CC) -c $(CFLAGS) -D PRNG=$(PRNG) $^ -o $@
+obj/test-%.o: tests/test-%.c | obj
+	$(ARCH) $(CC) -o $@ -c $(CFLAGS) $(INCLUDES) -D PRNG=$(PRNG) $^
 
 clean:
 	@rm -rf bin
 	@rm -rf obj
+	@rm -rf big-int-pkg
 
 test: PRNG=1
 test: $(TEST_BINS)
 	@echo && for f in $(TEST_BINS); do echo "$(CYAN)$$f$(WHITE)"; ASAN_OPTIONS=detect_leaks=1 $$f; echo; done
 
-memcheck:
-	ASAN_OPTIONS=detect_leaks=1 ./bin/main
+zip: all
+	@mkdir big-int-pkg
+	@cp -r lib bin obj src include Makefile-2 big-int-pkg
+	@mv big-int-pkg/Makefile-2 big-int-pkg/Makefile
+	@zip -r big-int-pkg.zip big-int-pkg > /dev/null
+	@rm -rf big-int-pkg
 
-.SECONDARY: 

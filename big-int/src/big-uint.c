@@ -362,6 +362,7 @@ void big_uint_add(big_uint_t *c, const big_uint_t *a, const big_uint_t *b) {
 }
 
 void big_uint_sub(big_uint_t *c, const big_uint_t *a, const big_uint_t *b) {
+    /** TODO: Implement this function */
     (void)a;
     (void)b;
     (void)c;
