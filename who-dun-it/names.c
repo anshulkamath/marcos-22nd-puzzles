@@ -7,10 +7,9 @@ const question_t questions[] = {
   { "Oh no, I'm perpetuating white supremacist capitalism with my quotient rule!", DAGAN },
   { "I don't think your family loves you.", NOAH },
   { "Modernize yourselves!", KELLER },
-  { "(Not a quote) Name the foundation that was immediately defunded for defrauding investors after sophomore year.", MIARF },
   { "Presumably everyone here has life goals.", KELLER },
   { BLU"Rafael: \"How do you make your tortillas so big?\"\n"GRN"______:\n"BLU"Rafael:\n"GRN"______: \"Yeast.\""RESET, NOAH },
-  { "\"GRAPH EDGE\", said in Chinese for an entire year, assumed to mean \"ice in my veins.\"", RAJ },
+  { "\"_________\", said in Chinese for an entire year, assumed to mean \"ice in my veins.\"", "graph edge" },
   { "The grutor really had the audacity to give me a 0 when the syllabus says you get one point for attempting the problem.", KEVIN },
   { "It looks like it's going to be much bigger than we would have hoped a month ago.", BUSH },
   { "It's amazing how fast the coronavirus has spread.", BUSH },
@@ -66,14 +65,13 @@ const question_t questions[] = {
   { "Uncorrelated data is... disconcerting to Homo sapiens.", DODDS },
   { "I was in the middle of deep throating a costco ice cream and I almost died.", ANSHUL },
   { "Being from Pittsburgh, the Pacific Ocean felt, and still feels, fictional.", DODDS },
-  { "This is awkward. (auto-captioned)", ANSHUL },
+  { "____ __ _______. (auto-captioned)", "this is awkward" },
   { "If I were Devon, I wouldn't come back to school", MICHELLE },
   { "Okay so remember how I said I was going to work on it?\nI am now at a taco shop.\nI don't know how this happens to me", EVAN },
   {
     "You know, sometimes you live in a dorm and you meet people, and spend enough time with "
     "said people such that you feel that they are, well, somehow important to you. (on friendship)", BEN_MOUL
   },
-  { "(Not a quote) Your taste in music is dogshit", ANSHUL"|"PACO },
   { "It doesn't have a very good solution because it's not really a problem", GEORGIA },
   { "If you receive a raw pickle over the network, don't trust it!", PYTHON },
   { "She probably thinks she's safe because she has a good number", KAYA },
@@ -92,6 +90,7 @@ const question_t questions[] = {
   { "Look at these masculine people who speed down the foothill on their mopeds like French countrymen.", BEN_MOUL },
   { "I love Prof Kuenning. He has never once given me advice that put me even remotely on the right track.", EVAN },
   { "I shit you not, I am a morning person.", DEVO },
+  { BLU"Rex: Went to Chem23 / forgot my hand-in.\n"GRN"RJ: Brought Van Heuvelen to the _____ ______"RESET, "local hampton" },
   { "If you can't handle this statement, feel free to die.", VANYA },
   { "I'm too emotionally unstable to deal with your chest dent right now.", VANYA },
 
@@ -99,6 +98,8 @@ const question_t questions[] = {
   { "I always feel nervous going to the Scripps pool. But then again, I imagine it's worse for girls going anywhere.", ANSHUL },
   { "This midterm is going to be hard. So hard. I feel sorry for you, honestly.", PROF_GEORGE },
   { "Don't be sad it happened, be glad it's over.", PACO },
+  { BLU"Marcos: I'm not the most productive in the morning\n"GRN"Anshul: That's because _______ ____ _______ ___ ___ ___________"RESET, "you're not awake in the morning" },
+  { "I suppose they have a right to do engineering, but it's really annoying", KUENNING },
   { "You build a thousand bridges and fuck one goat, and what do they call you? It's not Bridge Builder.", NOAH },
   { "I found a topology where reals are countable. But the intermediate value theorem doesn't hold.", RJ },
   { "If the sock fits, cum in it.", ANSHUL },
@@ -120,6 +121,11 @@ const question_t questions[] = {
   { "Are... you memeing right now?", WLOKA },
   { "Wait, we're talking about the same person right? Skeleton with tattoos?", RAJ },
   { "Sometimes you just gotta die on a hill.", RAJ },
+  { "I've never met a prof that hasn't pitied me", HARRY },
+  { "You will have a long life... and a small head", CLAIRE },
+  { BLU"Marcos: Wait, you can't say that\n"GRN"Anshul: ___________ ___ _________?"RESET, "gramatically or racially" },
+  { "It's not time, but it's proportional to time", RUTH },
+  { "You see, this is why people end up hating C. You can be doing something completely innocuous, like assigning data here and there, and then end up totally committing crimes against humanity", SCOTT },
   0,
 };
 

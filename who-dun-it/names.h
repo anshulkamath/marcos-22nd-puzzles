@@ -55,6 +55,10 @@
 #define KUENNING "geoff|kuenning"
 #define BURNS "burns"
 #define WLOKA "calden|wloka"
+#define HARRY "harry"
+#define CLAIRE "claire|chang"
+#define RUTH "ruth"
+#define SCOTT "scott|mccoy"
 
 typedef struct question_s {
   const char *question;

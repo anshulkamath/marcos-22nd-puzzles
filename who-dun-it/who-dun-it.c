@@ -6,7 +6,7 @@
 
 #include "names.h"
 
-#define GUESS_SIZE 20
+#define GUESS_SIZE 50
 #define IS_PIPED (!isatty(fileno(stdin)))
 
 int prev_streak = 0;
