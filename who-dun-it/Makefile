@@ -11,3 +11,6 @@ keyphrase.o: keyphrase.c keyphrase.h
 
 clean:
 	rm -rf *.o *.dSYM who-dun-it
+
+zip: clean all
+	zip who-dun-it.zip who-dun-it

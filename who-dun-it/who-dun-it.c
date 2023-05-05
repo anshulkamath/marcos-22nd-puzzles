@@ -45,7 +45,10 @@ void print_message(const char *message) {
   int line_index = 0, i = 0;
 
   do {
-    if ((line_index++ >= CHARACTERS_PER_LINE) && message[i] == ' ') {
+    if (
+      (line_index++ >= CHARACTERS_PER_LINE && message[i] == ' ') || 
+      message[i] == '\n'
+    ) {
       line_index = 0;
       printf("\n");
       continue;
@@ -121,7 +124,8 @@ int main() {
     "There is an understanding that you will not cheat by looking at the quotes list. "
     "Points will be awarded via a Fibonacci sequence conditioned on consecutive right answers. "
     "Additionally, I reserve the right to zero your score out at any point in the game. "
-    "The criterion for game termination is a secret, so maybe just try being right.\n\n"
+    "The criterion for game termination is a secret, so maybe just try being right. \n"
+    "P.S. You may want to save these answers in a text file delimited by newlines\n\n"
   );
 
   if (!IS_PIPED) {
