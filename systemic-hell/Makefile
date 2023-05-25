@@ -29,7 +29,7 @@ clean:
 zip: ARCH = arch -x86_64
 zip: systemic-hell
 	@mkdir out
-	@cp -r puzzle-3* Makefile-2 obj out
+	@cp -r puzzle-3* Makefile-2 obj README.md out
 	@mv out/Makefile-2 out/Makefile
 	@zip -r out.zip out > /dev/null
 	@rm -rf out
